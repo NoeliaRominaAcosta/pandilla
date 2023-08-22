@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
@@ -26,21 +27,31 @@ public class PetService {
         return petRepository.findById(id);
     }
 
-    public PetModel updateById(PetModel request, Long id){
-        PetModel pet = petRepository.findById(id).get();
-        pet.setName(request.getName());
-        pet.setAge(request.getAge());
-        pet.setAdoptedBy(request.getAdoptedBy());
-        pet.setAdoptedDate(request.getAdoptedDate());
-        pet.setIllnesses(request.getIllnesses());
-        pet.setArrivalDate(request.getArrivalDate());
-        pet.setVaccination(request.getVaccination());
-        pet.setHealthCondition(request.getHealthCondition());
-        petRepository.save(pet);
-        return pet;
+    public PetModel updateById(PetModel request, Long id) {
+        Optional<PetModel> optionalPet = petRepository.findById(id);
+
+        if (optionalPet.isPresent()) {
+            PetModel pet = optionalPet.get();
+
+            pet.setName(request.getName());
+            pet.setAge(request.getAge());
+            pet.setAdoptedBy(request.getAdoptedBy());
+            pet.setAdoptedDate(request.getAdoptedDate());
+            pet.setIllnesses(request.getIllnesses());
+            pet.setArrivalDate(request.getArrivalDate());
+            pet.setVaccination(request.getVaccination());
+            pet.setHealthCondition(request.getHealthCondition());
+
+            petRepository.save(pet);
+            return pet;
+        } else {
+            // Manejar el caso en el que no se encontró la mascota con el ID proporcionado
+            throw new NoSuchElementException("Pet with ID " + id + " not found");
+        }
     }
 
-        public Boolean deleteById(Long id){
+
+    public Boolean deleteById(Long id){
         try {
             petRepository.deleteById(id);
             return true;

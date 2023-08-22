@@ -33,7 +33,7 @@ public class IllnessController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteIllnessById(@PathVariable("Id") Long id) {
+    public String deleteIllnessById(@PathVariable("id") Long id) {
         boolean ok = this.illnessService.deleteById(id);
         if (ok) {
             return "Illness with id " + id + " is deleted";

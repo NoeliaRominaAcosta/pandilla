@@ -33,7 +33,6 @@ public class PetController {
     @PutMapping(path = "/{id}")
     public PetModel updatePet(@RequestBody PetModel request, @PathVariable("id") Long id){
         return this.petService.updateById(request, id);
-
     }
 
     @DeleteMapping(path = "/{id}")
