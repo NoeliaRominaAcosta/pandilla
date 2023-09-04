@@ -23,10 +23,20 @@ public class PetModel {
             inverseJoinColumns = @JoinColumn(name = "illness_id")
     )
     private Set<Illness> illnesses = new HashSet<>();
-    private String vaccination;
+    @ManyToMany
+    @JoinTable(
+            name = "pet_vaccine",
+            joinColumns = @JoinColumn(name = "pet_id"),
+            inverseJoinColumns = @JoinColumn(name = "vaccine_id")
+    )
+    private Set<Vaccine> vaccines = new HashSet<>();
     private Date arrivalDate;
     private Date adoptedDate;
     private String healthCondition;
     private String adoptedBy;
+    private Boolean dewormed;
+    private Boolean castration;
+    private Date birthDate;
+    private Date vetVisitDate;
 
 }

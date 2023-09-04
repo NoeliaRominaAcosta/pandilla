@@ -39,8 +39,11 @@ public class PetService {
             pet.setAdoptedDate(request.getAdoptedDate());
             pet.setIllnesses(request.getIllnesses());
             pet.setArrivalDate(request.getArrivalDate());
-            pet.setVaccination(request.getVaccination());
             pet.setHealthCondition(request.getHealthCondition());
+            pet.setDewormed(request.getDewormed());
+            pet.setCastration(request.getCastration());
+            pet.setBirthDate(request.getBirthDate());
+            pet.setVetVisitDate(request.getVetVisitDate());
 
             petRepository.save(pet);
             return pet;
