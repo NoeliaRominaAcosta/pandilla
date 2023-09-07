@@ -6,7 +6,9 @@ Este proyecto es un gestor para administrar las adopciones, transitos y rifas qu
 
 ### Tecnologías
 - Springboot
+- Swagger
 - Java
 - Angular
+- Css / Sass / Tailwind 
 - Mysql
 
