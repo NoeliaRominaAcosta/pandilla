@@ -6,12 +6,9 @@ Este proyecto es un gestor para administrar las adopciones, transitos y rifas qu
 
 ### Tecnologías
 - Springboot
+- Swagger
+- Java
 - Angular
--  Mysql
--  Firebase
+- Css / Sass / Tailwind 
+- Mysql
 
-### En colaboración con los talentos
-Marina Chavez
-Linda Paz
-Daiana Mercado
-Karen Cofone
