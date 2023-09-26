@@ -16,7 +16,7 @@ public class IllnessController {
    private IllnessService illnessService;
 
     @GetMapping
-    public ArrayList<Illness> getIllnessList(){
+    public ArrayList<Illness> getIllnessList() {
         return this.illnessService.getAllIllness();
     }
     @PostMapping

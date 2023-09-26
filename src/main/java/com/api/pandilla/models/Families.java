@@ -18,6 +18,7 @@ public class Families {
     private String email;
     private String location;
     private String phone;
+    private String typeOfAdoption; //adoptante o transito
     private Boolean contract;
 
 }
