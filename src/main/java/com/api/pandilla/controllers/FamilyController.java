@@ -1,7 +1,7 @@
 package com.api.pandilla.controllers;
 
-import com.api.pandilla.models.Families;
-import com.api.pandilla.services.FamiliesService;
+import com.api.pandilla.models.Family;
+import com.api.pandilla.services.FamilyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,25 +9,25 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/families")
-public class FamiliesController {
+@RequestMapping("/family")
+public class FamilyController {
     @Autowired
-    FamiliesService service;
+    FamilyService service;
 
     @GetMapping
-    public ArrayList<Families> getFamilies(){
+    public ArrayList<Family> getFamilies(){
         return this.service.getAllFams();
     }
     @PostMapping
-    public Families saveFamilies(@RequestBody Families family){
+    public Family saveFamilies(@RequestBody Family family){
         return this.service.savefamily(family);
     }
     @GetMapping("/{id}")
-    public Optional<Families> getFamsById(@PathVariable long id){
+    public Optional<Family> getFamsById(@PathVariable long id){
         return this.service.getFamById(id);
     }
     @PutMapping("/{id}")
-    public Families updateFamilies(@RequestBody Families request, @PathVariable("id") Long id){
+    public Family updateFamilies(@RequestBody Family request, @PathVariable("id") Long id){
         return this.service.updateFamById(request,id);
     }
     @DeleteMapping("/{id}")

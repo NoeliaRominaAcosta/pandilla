@@ -1,7 +1,7 @@
 package com.api.pandilla.services;
 
-import com.api.pandilla.models.Families;
-import com.api.pandilla.repositories.IFamiliesRepository;
+import com.api.pandilla.models.Family;
+import com.api.pandilla.repositories.IFamilyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
-public class FamiliesService {
+public class FamilyService {
     @Autowired
-    IFamiliesRepository familiesRepository;
+    IFamilyRepository familiesRepository;
 
-    public ArrayList<Families> getAllFams() { return (ArrayList<Families>)familiesRepository.findAll(); }
-    public Families savefamily(Families families){ return familiesRepository.save(families);}
-    public Optional<Families> getFamById(Long id){ return familiesRepository.findById(id);}
-    public Families updateFamById(Families request, Long id){
-        Families family = familiesRepository.findById(id).get();
+    public ArrayList<Family> getAllFams() { return (ArrayList<Family>)familiesRepository.findAll(); }
+    public Family savefamily(Family family){ return familiesRepository.save(family);}
+    public Optional<Family> getFamById(Long id){ return familiesRepository.findById(id);}
+    public Family updateFamById(Family request, Long id){
+        Family family = familiesRepository.findById(id).get();
         family.setName(request.getName());
         family.setLastName(request.getLastName());
         family.setDescription(request.getDescription());

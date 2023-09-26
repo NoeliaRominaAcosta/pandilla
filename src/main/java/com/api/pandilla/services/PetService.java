@@ -44,7 +44,7 @@ public class PetService {
             pet.setCastration(request.getCastration());
             pet.setBirthDate(request.getBirthDate());
             pet.setVetVisitDate(request.getVetVisitDate());
-
+            pet.setFamily(request.getFamily());
             petRepository.save(pet);
             return pet;
         } else {

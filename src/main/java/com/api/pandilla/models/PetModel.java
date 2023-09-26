@@ -1,5 +1,6 @@
 package com.api.pandilla.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -38,5 +39,15 @@ public class PetModel {
     private Boolean castration;
     private Date birthDate;
     private Date vetVisitDate;
+    @ManyToMany
+    @JoinTable(
+            name = "pet_family",
+            joinColumns = @JoinColumn(name = "pet_id"),
+            inverseJoinColumns = @JoinColumn(name = "family_id")
+    )
+    private Set<Family> family = new HashSet<>();
+
+
+
 
 }
