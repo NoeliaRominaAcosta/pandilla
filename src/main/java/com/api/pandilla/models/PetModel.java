@@ -46,8 +46,8 @@ public class PetModel {
             inverseJoinColumns = @JoinColumn(name = "family_id")
     )
     private Set<Family> family = new HashSet<>();
-
-
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_data_id")
+    private ImageData imageData;
 
 }

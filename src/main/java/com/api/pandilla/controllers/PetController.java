@@ -3,18 +3,22 @@ package com.api.pandilla.controllers;
 import com.api.pandilla.models.PetModel;
 import com.api.pandilla.services.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/pet")
 public class PetController {
 
     @Autowired
     private PetService petService;
-
     @GetMapping
     public ArrayList<PetModel> getPets(){
         return this.petService.getPets();
@@ -24,6 +28,7 @@ public class PetController {
     public PetModel savePet(@RequestBody PetModel pet){
         return this.petService.savePet(pet);
     }
+
 
     @GetMapping(path = "/{id}")
     public Optional<PetModel> getPetById(@PathVariable Long id){
