@@ -4,6 +4,7 @@ import Utils.ImageUtil;
 import com.api.pandilla.controllers.ImageUploadResponse;
 import com.api.pandilla.models.ImageData;
 import com.api.pandilla.models.PetModel;
+import com.api.pandilla.repositories.IPetRepository;
 import com.api.pandilla.repositories.ImageDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ public class ImageDataService {
 
     @Autowired
     private ImageDataRepository imageDataRepository;
+    @Autowired
+    private IPetRepository petRepository;
 
     public ImageUploadResponse uploadImage(MultipartFile file, PetModel petModel) throws IOException {
         ImageData imageData = ImageData.builder()
@@ -45,8 +48,8 @@ public class ImageDataService {
     }
 
     @Transactional
-    public byte[] getImage(String name) {
-        Optional<ImageData> dbImage = imageDataRepository.findByName(name);
+    public byte[] getImage(Long id) {
+        Optional<ImageData> dbImage = imageDataRepository.findById(id);
         return ImageUtil.decompressImage(dbImage.get().getImageData());
     }
 

@@ -47,13 +47,17 @@ public class ImageDataController {
                 .body(image);
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<?>  getImageByName(@PathVariable("name") String name){
-        byte[] image = imageDataService.getImage(name);
+    @GetMapping("/{id}")
+    public ResponseEntity<?>  getImageById(@PathVariable("id") Long id){
+        byte[] image = imageDataService.getImage(id);
+        if (image == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Image not found");
+        }
 
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.valueOf("image/png"))
                 .body(image);
+
     }
 
 

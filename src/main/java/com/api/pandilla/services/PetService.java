@@ -1,10 +1,13 @@
 package com.api.pandilla.services;
 
+import com.api.pandilla.models.ImageData;
 import com.api.pandilla.models.PetModel;
 import com.api.pandilla.repositories.IPetRepository;
+import com.api.pandilla.repositories.ImageDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -14,7 +17,8 @@ import java.util.Optional;
 public class PetService {
     @Autowired
     IPetRepository petRepository;
-
+    @Autowired
+    ImageDataRepository imageRepo;
     public ArrayList<PetModel> getPets(){
         return (ArrayList<PetModel>) petRepository.findAll();
     }
