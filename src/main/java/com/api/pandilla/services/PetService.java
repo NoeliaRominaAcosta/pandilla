@@ -45,7 +45,9 @@ public class PetService {
             pet.setBirthDate(request.getBirthDate());
             pet.setVetVisitDate(request.getVetVisitDate());
             pet.setFamily(request.getFamily());
-
+            if (request.getImage() != null) {
+                pet.setImage(request.getImage());
+            }
             petRepository.save(pet);
             return pet;
         } else {

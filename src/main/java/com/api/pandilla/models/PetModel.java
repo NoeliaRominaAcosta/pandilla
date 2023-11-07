@@ -1,5 +1,7 @@
 package com.api.pandilla.models;
 import lombok.Data;
+import org.apache.tomcat.util.codec.binary.Base64;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -43,5 +45,13 @@ public class PetModel {
             inverseJoinColumns = @JoinColumn(name = "family_id")
     )
     private Set<Family> family = new HashSet<>();
+    @Column(name = "image", columnDefinition = "TEXT")
+    private String image;
+    public String encodeImage(byte[] imageBytes) {
+        return Base64.encodeBase64String(imageBytes);
+    }
 
+    public byte[] decodeImage(String base64Image) {
+        return Base64.decodeBase64(base64Image);
+    }
 }
