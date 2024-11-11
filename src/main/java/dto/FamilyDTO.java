@@ -1,16 +1,15 @@
-package com.api.pandilla.models;
+package dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 
-@Entity
-@Table(name = "Family")
 @Data
-
-public class Family {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@NoArgsConstructor
+@AllArgsConstructor
+public class FamilyDTO {
     private Long id;
     private String name;
     private String lastName;
@@ -18,6 +17,7 @@ public class Family {
     private String email;
     private String location;
     private String phone;
-    private String typeOfAdoption; //adoptante o transito
+    private String typeOfAdoption;
     private Boolean contract;
+
 }
