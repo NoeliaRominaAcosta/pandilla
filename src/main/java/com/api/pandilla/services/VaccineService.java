@@ -10,49 +10,47 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+
 @Service
 public class VaccineService {
+
     @Autowired
-    IVaccineRepository VaccineRepository;
+    IVaccineRepository vaccineRepository;
 
     public ArrayList<Vaccine> getVaccines() {
-        return (ArrayList<Vaccine>) VaccineRepository.findAll();
+        return (ArrayList<Vaccine>) vaccineRepository.findAll();
     }
 
     public Optional<Vaccine> getVaccineById(Long id) {
-        return VaccineRepository.findById(id);
+        return vaccineRepository.findById(id);
     }
+
     public Vaccine saveVaccine(Vaccine vaccine) {
-        return VaccineRepository.save(vaccine);
+        return vaccineRepository.save(vaccine);
     }
 
     public Vaccine updateById(Vaccine request, Long id) {
-        Optional<Vaccine> optionalVaccine = VaccineRepository.findById(id);
+        Optional<Vaccine> optionalVaccine = vaccineRepository.findById(id);
 
         if (optionalVaccine.isPresent()) {
             Vaccine vaccine = optionalVaccine.get();
-
             vaccine.setName(request.getName());
             vaccine.setDose(request.getDose());
             vaccine.setNextApplication(request.getNextApplication());
-
-
-            VaccineRepository.save(vaccine);
+            vaccineRepository.save(vaccine);
             return vaccine;
         } else {
-
-            throw new NoSuchElementException("vaccine with ID " + id + " not found");
+            throw new NoSuchElementException("Vaccine with ID " + id + " not found");
         }
     }
-    public Boolean deleteById(Long id){
+
+    public Boolean deleteById(Long id) {
         try {
-            VaccineRepository.deleteById(id);
+            vaccineRepository.deleteById(id);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
         }
     }
-
-
 }
