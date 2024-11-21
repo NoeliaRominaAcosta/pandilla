@@ -21,7 +21,7 @@ public class MedicalRecordService {
     private final IMedicalRecordRepository medicalRecordRepository;
     private final IPetRepository petRepository; // Inyectamos el repositorio de Pet
     private final MedicalRecordMapper medicalRecordMapper;
-
+    private final PetService petService;
     public List<MedicalRecordDTO> getRecordsByPetId(Long petId) {
         return medicalRecordRepository.findByPetId(petId).stream()
                 .map(medicalRecordMapper::toDTO)
@@ -35,11 +35,13 @@ public class MedicalRecordService {
 
         // Convertir el DTO a entidad y asignar el Pet
         MedicalRecord medicalRecord = medicalRecordMapper.toEntity(medicalRecordDTO);
+
         medicalRecord.setPet(pet);
 
         // Guardar el registro médico
         medicalRecord = medicalRecordRepository.save(medicalRecord);
-
+        pet.setMedicalRecordId(medicalRecord.getId());
+        petService.updateById(pet,pet.getId());
         return medicalRecordMapper.toDTO(medicalRecord);
     }
 }

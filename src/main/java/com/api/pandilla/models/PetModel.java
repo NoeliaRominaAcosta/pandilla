@@ -38,6 +38,8 @@ public class PetModel {
     private Boolean castration;
     private Date birthDate;
     private Date vetVisitDate;
+    @Column(name = "medical_record_id")
+    private Long medicalRecordId;
     @ManyToMany
     @JoinTable(
             name = "pet_family",
