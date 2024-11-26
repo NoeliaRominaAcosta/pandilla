@@ -1,10 +1,13 @@
 package com.api.pandilla.controllers;
 
 import com.api.pandilla.models.Adoption.AdoptionApplication;
+import com.api.pandilla.models.Family;
 import com.api.pandilla.models.PetModel;
 import com.api.pandilla.services.AdoptionApplicationService;
+import com.api.pandilla.services.FamilyService;
 import com.api.pandilla.services.PetService;
 import dto.AdoptionApplicationDTO;
+import dto.FamilyDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +26,17 @@ public class AdoptionApplicationController {
 
     private final AdoptionApplicationService adoptionApplicationService;
     private final PetService petService;
+    private final FamilyService familyService;
 
     @PostMapping
     public ResponseEntity<AdoptionApplication> createApplication(@RequestBody AdoptionApplicationDTO applicationDTO) {
         // Crear una nueva instancia de AdoptionApplication
         AdoptionApplication application = new AdoptionApplication();
-
+        // Obtener la familia
+        Family family = familyService.getFamilyById(applicationDTO.getFamily().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Family not found"));
+        application.setFamily(family);
         // Asignar los campos desde el DTO
-        application.setAdopterName(applicationDTO.getAdopterName());
         application.setAdopterEmail(applicationDTO.getAdopterEmail());
         application.setAdopterNotes(applicationDTO.getAdopterNotes());
         application.setApplicationDate(LocalDate.now()); // Establecer la fecha actual como la de solicitud

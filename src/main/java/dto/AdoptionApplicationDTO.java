@@ -1,5 +1,6 @@
 package dto;
 
+import com.api.pandilla.models.Family;
 import com.api.pandilla.models.PetModel;
 import lombok.Data;
 import utils.ApplicationStatus;
@@ -14,8 +15,7 @@ public class AdoptionApplicationDTO {
 
     private PetModel pet;
 
-
-    private String adopterName;
+    private Family family;
 
 
     private String adopterEmail;

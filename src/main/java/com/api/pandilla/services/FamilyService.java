@@ -34,6 +34,9 @@ public class FamilyService {
     public Optional<FamilyDTO> getFamById(Long id) {
         return familiesRepository.findById(id).map(familyMapper::convertToDTO);
     }
+    public Optional<Family> getFamilyById(Long id) {
+        return familiesRepository.findById(id);
+    }
 
     public FamilyDTO updateFamily(FamilyDTO request, Long id) {
         Family family = familiesRepository.findById(id)

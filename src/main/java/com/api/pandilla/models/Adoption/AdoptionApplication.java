@@ -1,6 +1,8 @@
 package com.api.pandilla.models.Adoption;
 
+import com.api.pandilla.models.Family;
 import com.api.pandilla.models.PetModel;
+import dto.FamilyDTO;
 import lombok.Data;
 import utils.ApplicationStatus;
 
@@ -19,8 +21,9 @@ public class AdoptionApplication {
     @JoinColumn(name = "pet_id", nullable = false)
     private PetModel pet;
 
-    @Column(name = "adopter_name", nullable = false)
-    private String adopterName;
+    @ManyToOne
+    @JoinColumn(name = "family_id", nullable = false)
+    private Family family;
 
     @Column(name = "adopter_email", nullable = false)
     private String adopterEmail;
