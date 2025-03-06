@@ -29,7 +29,7 @@ public class PetModel {
             joinColumns = @JoinColumn(name = "pet_id"),
             inverseJoinColumns = @JoinColumn(name = "vaccine_id")
     )
-    private Set<Vaccine> vaccines = new HashSet<>();
+    private Set<Vaccine> vaccines;
     private Date arrivalDate;
     private Date adoptedDate;
     private String healthCondition;

@@ -12,3 +12,5 @@ Este proyecto es un gestor para administrar las adopciones, transitos y rifas qu
 - Css / Sass / Tailwind 
 - Mysql
 
+### Swagger
+Se puede acceder a los endpoints desde: http://localhost:8080/swagger-ui/index.html

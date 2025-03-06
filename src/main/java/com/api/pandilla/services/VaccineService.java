@@ -2,6 +2,7 @@ package com.api.pandilla.services;
 
 import com.api.pandilla.models.PetModel;
 import com.api.pandilla.models.Vaccine;
+import com.api.pandilla.repositories.IPetRepository;
 import com.api.pandilla.repositories.IVaccineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class VaccineService {
 
     @Autowired
     IVaccineRepository vaccineRepository;
+    @Autowired
+    IPetRepository petRepository;
 
     public ArrayList<Vaccine> getVaccines() {
         return (ArrayList<Vaccine>) vaccineRepository.findAll();
@@ -23,6 +26,9 @@ public class VaccineService {
 
     public Optional<Vaccine> getVaccineById(Long id) {
         return vaccineRepository.findById(id);
+    }
+    public Optional<PetModel> getById(Long petId) {
+        return petRepository.findById(petId);
     }
 
     public Vaccine saveVaccine(Vaccine vaccine) {

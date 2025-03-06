@@ -1,6 +1,8 @@
 package com.api.pandilla.controllers;
 
+import com.api.pandilla.models.PetModel;
 import com.api.pandilla.models.Vaccine;
+import com.api.pandilla.services.PetService;
 import com.api.pandilla.services.VaccineService;
 import dto.VaccineDTO;
 import mappers.VaccineMapper;
@@ -8,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -17,6 +21,8 @@ import java.util.stream.Collectors;
 
     @Autowired
     VaccineService service;
+    @Autowired
+    PetService petService;
 
     @GetMapping
     public ArrayList<VaccineDTO> getVaccines() {
@@ -24,6 +30,15 @@ import java.util.stream.Collectors;
         return this.service.getVaccines().stream()
                 .map(VaccineMapper.INSTANCE::toVaccineDTO)
                 .collect(Collectors.toCollection(ArrayList::new));
+    }
+    @GetMapping("/getPet/{petId}")
+    public Set<VaccineDTO> getVaccinesByPet(@PathVariable Long petId) {
+        return this.petService.getById(petId)
+                .map(PetModel::getVaccines)
+                .orElse(Collections.emptySet())
+                .stream()
+                .map(VaccineMapper.INSTANCE::toVaccineDTO)
+                .collect(Collectors.toSet());
     }
 
     @PostMapping
